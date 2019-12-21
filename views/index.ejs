@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Grinder Gifts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="GrinderGiftsCSS.css">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+   <script>
+     var stripePublicKey = '<%= stripePublicKey %>'
+
+   </script>
+
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button><img id="gifts" src="TopLogo.JPG" alt="gifts">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://damp-shelf-59759.herokuapp.com/">Sign In</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="java.html" tabindex="-1" aria-disabled="true">Java</a>
+          </li>
+        </ul>
+    </div>
+    <div class="cart-btn" id= "cart-count">
+      <span class="nav-icon">
+
+      </span>
+  </div>
+      </nav>
+
+      <!-- End of nav bar -->
+      <!--Products-->
+   <header>
+      <h1 align=center><b>Online Store</b></h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+
+
+      <section class="container content-section">
+
+          <div class="shop-items">
+            <% items.grinders.forEach(function(item){ %>
+              <div class="shop-item" data-item-id= "<%= item.id %>">
+                  <span class="shop-item-title"><%= item.name %></span>
+                  <img class="shop-item-image" src="<%= item.imgName %>">
+                  <div class="shop-item-details">
+                      <span class="shop-item-price"><b>$<%= item.price / 100 %></b></span>
+                      <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                  </div>
+              </div>
+              <% }) %>
+          </div>
+      </section>
+
+      <section class="container content-section">
+          <h2 class="section-header">CART</h2>
+          <div class="cart-row">
+              <span class="cart-item cart-header cart-column">ITEM</span>
+              <span class="cart-price cart-header cart-column">PRICE</span>
+              <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+          </div>
+          <div class="cart-items">
+          </div>
+          <div class="cart-total">
+              <strong class="cart-total-title">Total</strong>
+              <span class="cart-total-price">$0</span>
+          </div>
+          <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+      </section>
+
+    <!--end of product line-->
+
+<hr>
+<div class="under">
+<h2 class="Statement"><u>Gift to Grind!</u></h2>
+        <p>
+          <b>GrinderGifts</b> is a company created from the concept of coffee and hard work. Turning that concept into unique custom grinders and designs! Email us any designs you want to implement on your grinders, or order one of our products on display.</p>
+        </div>
+
+      <div class="videoz">
+        <center>
+        <video controls src="vidGrind.mov" type= "video/mov" class= "vidControl" preload="auto" poster="GG_Gold.JPG" height="300" width="250">
+
+        </video>
+        <video controls src="GGiftsvid.mov" type= "video/mov" class= "vidControl" preload="auto" poster="Purple.JPG" height="300" width="250">
+
+        </video>
+      </center>
+</div>
+
+  <footer>
+
+    <div class="btn-group col-lg-3 col-md-4 col-sm-6">
+      <ul class="nav footer-nav">
+     <a class="btn btn-primary" style="margin:10px" href="ContactUs.html">Contact Us</a>
+     <a class="btn btn-primary" style="margin:10px" href="https://twitter.com/grindergifts"><i class="fab fa-twitter"></i></a>
+     <a class="btn btn-primary" style="margin:10px" href="https://www.instagram.com/grindergifts/"><i class="fab fa-instagram"></i></a>
+      </ul>
+    </div>
+
+
+</footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/5fbd16b839.js"></script>
+        <script src="GrinderGiftsJS.js"></script>
+  </body>
+</html>

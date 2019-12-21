@@ -1,0 +1,36 @@
+
+ { 
+     "grinders": [
+    {
+        "id": 1,
+        "name": "Cool Grey",
+        "price": 2500,
+        "imgName": "GreyG.JPG"
+
+    },
+    {
+          "id": 2,      
+          "name": "Rose Gold",
+          "price": 1000,
+          "imgName": "RoseGolds.JPG"
+      },
+      {
+          "id": 3,
+          "name": "Silver Puck",
+          "price": 1000,
+          "imgName": "Silv.JPG"
+      },
+      {
+          "id": 4,
+          "name": "Gold Puck",
+          "price": 1000,
+          "imgName": "GoldS.JPG"
+      },
+      {
+          "id": 5,
+          "name": "Combo Pack",
+          "price": 7500,
+          "imgName": "All.JPG"
+        }
+    ]
+  }

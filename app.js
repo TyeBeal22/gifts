@@ -1,75 +1,74 @@
 
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const request = require("request");
+require('dotenv').config()
 
 
+const stripeSecretKey = process.env.Stripe_Secret_Key
+const stripePublicKey = process.env.Stripe_Public_Key
+const express = require('express');
 const app = express();
+const request = require("request");
+const bodyParser = require("body-parser");
 
 
-app.use("/public", express.static('public'));
+
+
+const fs = require('fs')
+const stripe = require('stripe')(stripeSecretKey)
+app.set('view engine','ejs')
+app.use(express.json())
+app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", function(req, res){
-  res.sendFile(__dirname + "/SignIn.html");
-});
 
 
 
-app.post("/", function(req, res){
-
-  var fName = req.body.fName;
-  var Email1 = req.body.Email1;
-  var Pword = req.body.Pword;
-
-  var data = {
-    members: [
-      {
-        email_address: Email1,
-      status: "subscribed",
-      merge_fields: {
-        LNAME: fName
-      },
+app.get('/index', function(req, res) {
+  fs.readFile('items.json', function(error, data) {
+    if (error) {
+      res.status(500).end()
+    } else {
+      res.render('index.ejs', {
+        stripePublicKey: stripePublicKey,
+        items: JSON.parse(data)
+      })
     }
-    ]
-  };
+  })
+})
 
-  var jsonData = JSON.stringify(data);
-
-  var options = {
-    url: "https://us4.api.mailchimp.com/3.0/lists/4716d3f91f",
-    method: "POST",
-    headers: {
-      "Authorization": "Gifts1 b98f031831da5803d075723dec231be5-us4"
-    },
-    body: jsonData
-  };
-
-request(options, function(error, response, body){
-    if (error){
-      res.sendFile(__dirname + "/failure.html");
+app.post('/purchase', function(req, res) {
+  fs.readFile('items.json', function(error, data) {
+    if (error) {
+      res.status(500).end()
     } else {
-      if (response.statusCode === 200) {
-        res.sendFile(__dirname + "/success.html");
-    } else {
-      res.sendFile(__dirname + "/failure.html");
-    }}
-});
+      const itemsJson = JSON.parse(data)
+      const itemsArray = itemsJson.grinders
+      let total = 0
+      req.body.items.forEach(function(item) {
+        const itemJson = itemsArray.find(function(i) {
+          return i.id == item.id
+        })
+        total = total + itemJson.price * item.quantity
+      })
 
-});
+      stripe.charges.create({
+        amount: total,
+        source: req.body.stripeTokenId,
+        currency: 'usd'
+      }).then(function() {
+        console.log('Charge Successful')
+        res.json({ message: 'Successfully purchased items' })
+      }).catch(function() {
+        console.log('Charge Fail')
+        res.status(500).end()
+      })
+    }
+  })
+})
 
-app.post("/failure", function(req, res){
-  res.redirect("/");
-});
+
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Server is running on port 3000");
 });
-
-
-
-// b98f031831da5803d075723dec231be5-us4  API Key
-
-// 4716d3f91f  List ID

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Java stuff</title>
+     <!-- Squarespace. --><!-- grindergifts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="project.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+
+      <div class="container-1">
+        <h2><b>How old are you ?</b></h2>
+        <div class="flex-box-container-1">
+
+    <div>
+      <button class="btn btn-primary" onclick="ageInDays()">Insert Age</button>
+    </div>
+    <div>
+      <button class="btn btn-danger" onclick="reset()"> Reset </button>
+    </div>
+  </div>
+  <div class="flex-box-container-1">
+    <div id="flex-box-result" id = "flex-cat"></div>
+  </div>
+</div>
+
+      <div class="container-2">
+        <h2>Bow Tye</h2>
+        <button class ="btn btn-success" id="cat-gen" onclick="generateBowTye()">BowButton</button>
+        <button class="btn btn-danger" onclick="reset1()"> Remove</button>
+      <div class="flex-box-container-2" id="flex-cat">
+      </div>
+      </div>
+      <div class="container-3">
+        <h2>Rock Paper Scissors</h2>
+        <div class="flex-box-rps" id="flex-box-rps-div">
+          <img id="Rock" src="Rock.JPG" height=150 width= 150 onclick="rpsGame(this)">
+          <img id="Scissor" src="Scissor.JPG"  height=150 width= 150 onclick="rpsGame(this)">
+          <img id="bag" src="bag.JPG" height=150 width= 150 onclick="rpsGame(this)">
+          <a class="btn" href="java.html"><b>Play Again</b></a>
+        </div>
+      </div>
+      <div class="container-4">
+        <h2 id="change-my-color"> College Colors </h2>
+        <div class="flex-box-pick-color">
+          <form>
+            <select name="backdrop" id="background" onchange="buttonColors(this)">
+                          <option value="random">Random</option>
+                          <option value="red">Red</option>
+                          <option value="green">Green</option>
+                          <option value="reset">Reset</option>
+            </select>
+          </form>
+
+          <button class="btn btn-primary">BlueDevils</button>
+          <button class="btn btn-danger">Bull Dogs</button>
+          <button class="btn btn-warning">Trojans</button>
+          <button class="btn btn-success">Spartans</button>
+        </div>
+      </div>
+
+
+  <div class="container-5">
+    <h2>Blackjack</h2>
+
+      <div class="flex-blackjack-row-1">
+    <div id="your-box">
+    <h2>You: <span id="your-blackjack-result">0</span></h2>
+  </div>
+
+    <div id="dealer-box">
+      <h2>Dealer: <span id="dealer-blackjack-result">0</h2>
+    </div>
+  </div>
+<div class="flex-blackjack-row-2">
+<div>
+  <button class="btn-lg btn-primary mr-2" id="blackjack-hit-button">Hit</button>
+  <button class="btn-lg btn-warning mr-2" id="blackjack-stand-button">Stand</button>
+  <button class="btn-lg btn-danger mr-2" id="blackjack-deal-button">Deal</button>
+  </div>
+</div>
+<div class="flex-blackjack-row-3">
+  <table>
+    <tr>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Draws</th>
+    </tr>
+
+    <tr>
+      <td><span id="wins">0</span></td>
+      <td><span id="losses">0</span></td>
+      <td><span id="draws">0</span></td>
+    </tr>
+  </table>
+</div>
+</div>
+
+
+
+        <p class="light"> © 2019 Grinder Gifts</p>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="project.js"> </script>
+
+  </body>
+</html>
