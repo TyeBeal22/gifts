@@ -4,12 +4,12 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 
 
-const stripe = require('stripe')("sk_live_5rWaDPj0xlmQxsXTdybEcvTc00M3FlafR4");
+const stripe = require('stripe')("sklive or practice");
 const express = require('express');
 const app = express();
 
 
-const stripePublicKey ="pk_live_qFprKS2cwzSZE3YTa1d89ql800Q2zPp738";
+const stripePublicKey ="sk public key";
 
 const request = require("request");
 const bodyParser = require("body-parser");
