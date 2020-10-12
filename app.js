@@ -3,18 +3,31 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 
-const stripeSecretKey = process.env.Stripe_Secret_Key
-const stripePublicKey = process.env.Stripe_Public_Key
+
+const stripe = require('stripe')("sk_live_5rWaDPj0xlmQxsXTdybEcvTc00M3FlafR4");
 const express = require('express');
 const app = express();
+
+
+const stripePublicKey ="pk_live_qFprKS2cwzSZE3YTa1d89ql800Q2zPp738";
+
 const request = require("request");
 const bodyParser = require("body-parser");
 
+const https = require('https');
+const fs = require('fs');
+
+const ejs = require('ejs');
+const session = require('express-session');
+const mongoose = require("mongoose");
 
 
 
-const fs = require('fs')
-const stripe = require('stripe')(stripeSecretKey)
+
+
+
+stripeSecretKey="sk_live_5rWaDPj0xlmQxsXTdybEcvTc00M3FlafR4";
+
 app.set('view engine','ejs')
 app.use(express.json())
 app.use(express.static('public'))
@@ -24,7 +37,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 
-app.get('/index', function(req, res) {
+
+
+
+
+app.get('/', function(req, res) {
   fs.readFile('items.json', function(error, data) {
     if (error) {
       res.status(500).end()
@@ -56,7 +73,7 @@ app.post('/purchase', function(req, res) {
         amount: total,
         source: req.body.stripeTokenId,
         currency: 'usd'
-      }).then(function() {
+      }).then(function(charge) {
         console.log('Charge Successful')
         res.json({ message: 'Successfully purchased items' })
       }).catch(function() {
@@ -66,6 +83,7 @@ app.post('/purchase', function(req, res) {
     }
   })
 })
+
 
 
 

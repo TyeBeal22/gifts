@@ -151,3 +151,64 @@ function updateCartTotal() {
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
 }
 
+// contactUS
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDRUjbF79I4gz2iQEgYlOvOTjZYqj6hyHU",
+    authDomain: "contact-963f7.firebaseapp.com",
+    databaseURL: "https://contact-963f7.firebaseio.com",
+    projectId: "contact-963f7",
+    storageBucket: "contact-963f7.appspot.com",
+    messagingSenderId: "1083103317814",
+    appId: "1:1083103317814:web:4e4b695c8445d582282d97",
+    measurementId: "G-1GYZXVT4P0"
+  };
+  // Initialize Firebase
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+var messagesRef = firebase.database().ref('messages');
+
+document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+function submitForm(e) {
+    e.preventDefault();
+    // values
+    var name = getInput('name');
+    var company = getInput('company');
+    var email = getInput('email');
+    var phone = getInput('phone');
+    var message = getInput('message');
+
+    saveMessage(name, company, email, phone, message);
+
+    // alert
+    document.querySelector('.alert').style.display = 'block';
+
+    setTimeout(function(){
+        document.querySelector('.alert').style.display = 'none';
+    }, 3000);
+// clear
+    document.getElementById('contactForm').reset();
+    
+}
+
+function getInput(id){
+    return document.getElementById(id).value;
+}
+
+
+// save
+
+function saveMessage(name, company, email, phone, message){
+    var newMessageRef = messagesRef.push();
+    newMessageRef.set({ 
+        name: name, 
+        company: company,
+        email: email, 
+        phone: phone,     
+        message: message
+    
+    });
+}

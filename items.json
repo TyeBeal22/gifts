@@ -1,5 +1,5 @@
 
- { 
+ {
      "grinders": [
     {
         "id": 1,
@@ -9,7 +9,7 @@
 
     },
     {
-          "id": 2,      
+          "id": 2,
           "name": "Rose Gold",
           "price": 1000,
           "imgName": "RoseGolds.JPG"
@@ -25,12 +25,7 @@
           "name": "Gold Puck",
           "price": 1000,
           "imgName": "GoldS.JPG"
-      },
-      {
-          "id": 5,
-          "name": "Combo Pack",
-          "price": 7500,
-          "imgName": "All.JPG"
-        }
+      }
+
     ]
   }
